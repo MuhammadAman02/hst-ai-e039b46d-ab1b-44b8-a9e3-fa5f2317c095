@@ -1,68 +1,77 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Mail, Lock, Eye, EyeOff } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [isInIframe, setIsInIframe] = useState(false);
 
   // Demo credentials
   const DEMO_EMAIL = 'demo@monday.com';
   const DEMO_PASSWORD = 'demo123';
 
-  useEffect(() => {
-    // Check if we're running inside an iframe
-    const inIframe = window.self !== window.top;
-    setIsInIframe(inIframe);
-    console.log('Running in iframe:', inIframe);
-  }, []);
-
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Login form submitted with:', { email, password });
-    console.log('Is in iframe:', isInIframe);
+    console.log('🔐 Login attempt with:', { email, password });
     
     setIsLoading(true);
     setError('');
     
     // Simulate login process with credential validation
     setTimeout(() => {
-      console.log('Checking credentials...');
-      console.log('Expected:', { email: DEMO_EMAIL, password: DEMO_PASSWORD });
-      console.log('Received:', { email, password });
+      console.log('🔍 Validating credentials...');
       
       if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
-        console.log('✅ Login successful with demo credentials');
+        console.log('✅ Login successful!');
         
-        // Force a full page reload to the dashboard route
-        // This works reliably in both iframe and normal browser contexts
-        console.log('🔄 Forcing page navigation to dashboard...');
-        window.location.replace('/dashboard');
+        // Store login state in localStorage
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
         
-        setIsLoading(false);
+        // Use multiple navigation methods for maximum compatibility
+        try {
+          // Method 1: Try window.location.href first
+          console.log('🚀 Attempting navigation to dashboard...');
+          window.location.href = '/dashboard';
+          
+          // Method 2: Fallback after a short delay
+          setTimeout(() => {
+            console.log('🔄 Fallback navigation attempt...');
+            window.location.assign('/dashboard');
+          }, 500);
+          
+          // Method 3: Final fallback
+          setTimeout(() => {
+            console.log('⚡ Final navigation attempt...');
+            window.location.replace('/dashboard');
+          }, 1000);
+          
+        } catch (error) {
+          console.error('❌ Navigation error:', error);
+          // If all else fails, reload the page with the new URL
+          window.location.reload();
+        }
+        
       } else {
-        console.log('❌ Login failed - invalid credentials');
+        console.log('❌ Invalid credentials');
         setError('Invalid email or password. Please use the demo credentials provided below.');
         setIsLoading(false);
       }
-    }, 1000);
+    }, 800);
   };
 
   const fillDemoCredentials = () => {
-    console.log('Auto-filling demo credentials');
+    console.log('📝 Auto-filling demo credentials');
     setEmail(DEMO_EMAIL);
     setPassword(DEMO_PASSWORD);
     setError('');
   };
 
   const handleBackToHome = () => {
-    console.log('Navigating back to home...');
-    window.location.replace('/');
+    console.log('🏠 Navigating back to home...');
+    window.location.href = '/';
   };
 
   return (
@@ -76,15 +85,6 @@ const LoginPage = () => {
           <ArrowLeft className="w-4 h-4" />
           Back to home
         </button>
-
-        {/* Debug info for iframe */}
-        {isInIframe && (
-          <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-            <p className="text-sm text-yellow-800">
-              ⚠️ Running in iframe mode - using window.location.replace for navigation
-            </p>
-          </div>
-        )}
 
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
@@ -121,10 +121,6 @@ const LoginPage = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 bg-white"
-                  style={{ 
-                    WebkitTextFillColor: '#374151 !important',
-                    backgroundColor: 'white !important'
-                  }}
                   placeholder="Enter your email"
                   required
                 />
@@ -143,10 +139,6 @@ const LoginPage = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 bg-white"
-                  style={{ 
-                    WebkitTextFillColor: '#374151 !important',
-                    backgroundColor: 'white !important'
-                  }}
                   placeholder="Enter your password"
                   required
                 />
