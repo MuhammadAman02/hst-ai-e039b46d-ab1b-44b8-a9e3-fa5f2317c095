@@ -10,6 +10,7 @@ interface StatusColumnProps {
   onDragStart?: (task: Task) => void;
   onDragEnd?: () => void;
   onDrop?: (status: TaskStatus) => void;
+  onReorderTasks?: (columnId: string, fromIndex: number, toIndex: number) => void;
   draggedTask?: Task | null;
 }
 
@@ -20,24 +21,58 @@ const StatusColumn: React.FC<StatusColumnProps> = ({
   onDragStart,
   onDragEnd,
   onDrop,
+  onReorderTasks,
   draggedTask
 }) => {
   const [isDragOver, setIsDragOver] = useState(false);
+  const [dragOverIndex, setDragOverIndex] = useState<number | null>(null);
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(true);
+    
+    // Calculate which position we're hovering over
+    const rect = e.currentTarget.getBoundingClientRect();
+    const y = e.clientY - rect.top;
+    const cardHeight = 120; // Approximate height of a task card
+    const index = Math.floor(y / cardHeight);
+    setDragOverIndex(Math.min(index, column.tasks.length));
   };
 
   const handleDragLeave = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
+    setDragOverIndex(null);
   };
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
-    onDrop?.(column.id as TaskStatus);
+    
+    if (draggedTask) {
+      if (draggedTask.status === column.id) {
+        // Reordering within the same column
+        const fromIndex = column.tasks.findIndex(task => task.id === draggedTask.id);
+        const toIndex = dragOverIndex !== null ? dragOverIndex : column.tasks.length;
+        
+        if (fromIndex !== toIndex && fromIndex !== -1) {
+          console.log(`Reordering task "${draggedTask.title}" from position ${fromIndex} to ${toIndex} in ${column.title}`);
+          onReorderTasks?.(column.id, fromIndex, toIndex);
+        }
+      } else {
+        // Moving to a different column
+        console.log(`Moving task "${draggedTask.title}" to ${column.title}`);
+        onDrop?.(column.id as TaskStatus);
+      }
+    }
+    
+    setDragOverIndex(null);
+  };
+
+  const handleTaskDragOver = (e: React.DragEvent, index: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDragOverIndex(index);
   };
 
   return (
@@ -70,16 +105,31 @@ const StatusColumn: React.FC<StatusColumnProps> = ({
       </div>
 
       <div className="space-y-3">
-        {column.tasks.map((task) => (
-          <TaskCard
-            key={task.id}
-            task={task}
-            onTaskClick={onTaskClick}
-            onDragStart={onDragStart}
-            onDragEnd={onDragEnd}
-            isDragging={draggedTask?.id === task.id}
-          />
+        {column.tasks.map((task, index) => (
+          <div key={task.id}>
+            {/* Drop zone above each task */}
+            {draggedTask && draggedTask.status === column.id && dragOverIndex === index && (
+              <div className="h-2 bg-blue-200 rounded-full mb-2 opacity-75"></div>
+            )}
+            
+            <div
+              onDragOver={(e) => handleTaskDragOver(e, index)}
+            >
+              <TaskCard
+                task={task}
+                onTaskClick={onTaskClick}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+                isDragging={draggedTask?.id === task.id}
+              />
+            </div>
+          </div>
         ))}
+        
+        {/* Drop zone at the end */}
+        {draggedTask && draggedTask.status === column.id && dragOverIndex === column.tasks.length && (
+          <div className="h-2 bg-blue-200 rounded-full opacity-75"></div>
+        )}
         
         {column.tasks.length === 0 && (
           <div className="text-center py-8">
@@ -99,7 +149,7 @@ const StatusColumn: React.FC<StatusColumnProps> = ({
         )}
       </div>
 
-      {isDragOver && draggedTask && (
+      {isDragOver && draggedTask && draggedTask.status !== column.id && (
         <div className="mt-4 p-3 border-2 border-blue-300 border-dashed rounded-lg bg-blue-50">
           <p className="text-blue-600 text-sm text-center font-medium">
             Drop task here to move to {column.title}
