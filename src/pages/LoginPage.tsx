@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ArrowLeft, Mail, Lock, Eye, EyeOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,14 +9,23 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [isInIframe, setIsInIframe] = useState(false);
 
   // Demo credentials
   const DEMO_EMAIL = 'demo@monday.com';
   const DEMO_PASSWORD = 'demo123';
 
+  useEffect(() => {
+    // Check if we're running inside an iframe
+    const inIframe = window.self !== window.top;
+    setIsInIframe(inIframe);
+    console.log('Running in iframe:', inIframe);
+  }, []);
+
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Login form submitted with:', { email, password });
+    console.log('Is in iframe:', isInIframe);
     
     setIsLoading(true);
     setError('');
@@ -29,9 +38,16 @@ const LoginPage = () => {
       
       if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
         console.log('✅ Login successful with demo credentials');
-        console.log('🚀 Navigating to dashboard...');
+        
+        if (isInIframe) {
+          console.log('🔄 In iframe - using window.location for navigation');
+          // When in iframe, use window.location instead of React Router
+          window.location.href = '/dashboard';
+        } else {
+          console.log('🚀 Not in iframe - using React Router navigation');
+          navigate('/dashboard');
+        }
         setIsLoading(false);
-        navigate('/dashboard');
       } else {
         console.log('❌ Login failed - invalid credentials');
         setError('Invalid email or password. Please use the demo credentials provided below.');
@@ -47,17 +63,34 @@ const LoginPage = () => {
     setError('');
   };
 
+  const handleBackToHome = () => {
+    if (isInIframe) {
+      window.location.href = '/';
+    } else {
+      navigate('/');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Back to home */}
         <button 
-          onClick={() => navigate('/')}
+          onClick={handleBackToHome}
           className="flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-8 transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to home
         </button>
+
+        {/* Debug info for iframe */}
+        {isInIframe && (
+          <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+            <p className="text-sm text-yellow-800">
+              ⚠️ Running in iframe mode - navigation will use page reload
+            </p>
+          </div>
+        )}
 
         {/* Login Card */}
         <div className="bg-white rounded-2xl shadow-xl border border-gray-200 p-8">
@@ -93,7 +126,11 @@ const LoginPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900"
+                  style={{ 
+                    WebkitTextFillColor: '#374151',
+                    backgroundColor: 'white'
+                  }}
                   placeholder="Enter your email"
                   required
                 />
@@ -111,7 +148,11 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900"
+                  style={{ 
+                    WebkitTextFillColor: '#374151',
+                    backgroundColor: 'white'
+                  }}
                   placeholder="Enter your password"
                   required
                 />
