@@ -1,12 +1,13 @@
 import React from 'react';
-import { Home, Users, Calendar, BarChart3, Settings, Plus } from 'lucide-react';
+import { Home, Users, Calendar, BarChart3, Settings, Plus, LogOut } from 'lucide-react';
 
 interface SidebarProps {
   activeView: string;
   onViewChange: (view: string) => void;
+  onLogout?: () => void;
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ activeView, onViewChange }) => {
+const Sidebar: React.FC<SidebarProps> = ({ activeView, onViewChange, onLogout }) => {
   const menuItems = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'boards', label: 'My Boards', icon: BarChart3 },
@@ -58,7 +59,7 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onViewChange }) => {
 
       {/* User Profile */}
       <div className="p-4 border-t border-gray-200">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 mb-3">
           <div className="w-10 h-10 bg-monday-green rounded-full flex items-center justify-center">
             <span className="text-white font-semibold">JD</span>
           </div>
@@ -67,6 +68,16 @@ const Sidebar: React.FC<SidebarProps> = ({ activeView, onViewChange }) => {
             <p className="text-xs text-gray-500">john@company.com</p>
           </div>
         </div>
+        
+        {onLogout && (
+          <button
+            onClick={onLogout}
+            className="w-full flex items-center gap-2 px-3 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors duration-150"
+          >
+            <LogOut size={16} />
+            <span className="text-sm">Sign out</span>
+          </button>
+        )}
       </div>
     </div>
   );
