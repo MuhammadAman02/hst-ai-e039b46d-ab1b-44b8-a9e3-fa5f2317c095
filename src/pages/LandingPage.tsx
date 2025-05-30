@@ -1,9 +1,11 @@
 import React from 'react';
 import { ArrowRight, CheckCircle, Users, Calendar, BarChart3, Zap, Shield, Globe, Star, Play, ChevronRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 
 const LandingPage = () => {
-  const navigate = useNavigate();
+  const navigateToLogin = () => {
+    console.log('Navigating to login page...');
+    window.location.href = '/login';
+  };
 
   const features = [
     {
@@ -102,13 +104,13 @@ const LandingPage = () => {
               <a href="#pricing" className="text-gray-700 hover:text-gray-900 transition-colors">Pricing</a>
               <a href="#resources" className="text-gray-700 hover:text-gray-900 transition-colors">Resources</a>
               <button 
-                onClick={() => navigate('/login')}
+                onClick={navigateToLogin}
                 className="text-gray-700 hover:text-gray-900 transition-colors"
               >
                 Log in
               </button>
               <button 
-                onClick={() => navigate('/login')}
+                onClick={navigateToLogin}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors font-medium"
               >
                 Get Started
@@ -142,7 +144,7 @@ const LandingPage = () => {
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
               <button 
-                onClick={() => navigate('/login')}
+                onClick={navigateToLogin}
                 className="bg-blue-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-blue-700 transition-all duration-200 transform hover:scale-105 flex items-center gap-2 shadow-lg"
               >
                 Get Started
@@ -320,7 +322,7 @@ const LandingPage = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
-              onClick={() => navigate('/login')}
+              onClick={navigateToLogin}
               className="bg-white text-blue-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center gap-2 shadow-lg"
             >
               Start Free Trial
