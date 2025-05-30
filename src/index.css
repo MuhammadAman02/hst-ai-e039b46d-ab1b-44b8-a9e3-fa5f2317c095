@@ -1,86 +1,193 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+  }
+
+  /* Fix for autofill styling */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #374151 !important;
+    color: #374151 !important;
+    background-color: white !important;
+  }
+
+  /* Additional autofill fixes for different browsers */
+  input[type="email"]:-webkit-autofill,
+  input[type="password"]:-webkit-autofill,
+  input[type="text"]:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+    -webkit-text-fill-color: #374151 !important;
+    color: #374151 !important;
+    background-color: white !important;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  /* Ensure proper text color for all input states */
+  input[type="email"],
+  input[type="password"],
+  input[type="text"] {
+    color: #374151 !important;
   }
 }
 
-@layer components {
-  /* Monday.com specific styles */
-  .monday-gradient {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600;
-  }
-
-  .sidebar-item {
-    @apply flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg transition-all duration-150 hover:bg-gray-100;
-  }
-
-  .sidebar-item.active {
-    @apply bg-blue-50 text-blue-700 border-l-4 border-blue-600;
-  }
-
-  .task-card {
-    @apply bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:border-gray-300;
-  }
-
-  .status-badge {
-    @apply px-2 py-1 rounded-full text-xs font-medium border;
-  }
-
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+/* Custom Monday.com styles */
+.monday-gradient {
+  background: linear-gradient(135deg, #0073ea 0%, #6c5ce7 100%);
 }
 
-@layer utilities {
-  /* Custom animations */
-  .animate-fade-in {
-    animation: fadeIn 0.3s ease-in-out;
-  }
+.monday-blue {
+  background-color: #0073ea;
+}
 
-  .animate-slide-in {
-    animation: slideIn 0.3s ease-out;
-  }
+.monday-green {
+  background-color: #00c875;
+}
 
-  .animate-bounce-in {
-    animation: bounceIn 0.5s ease-out;
-  }
+.monday-orange {
+  background-color: #fdab3d;
+}
 
-  .animate-pulse-slow {
-    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
+.monday-red {
+  background-color: #e2445c;
+}
 
-  /* Custom colors */
-  .monday-blue {
-    background-color: #0073ea;
-  }
+.monday-purple {
+  background-color: #a25ddc;
+}
 
-  .monday-green {
-    background-color: #00c875;
-  }
+/* Sidebar styles */
+.sidebar-item {
+  @apply flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg transition-all duration-150 hover:bg-gray-100;
+}
 
-  .monday-orange {
-    background-color: #fdab3d;
-  }
+.sidebar-item.active {
+  @apply bg-blue-50 text-blue-700 border-l-4 border-blue-600;
+}
 
-  .monday-red {
-    background-color: #e2445c;
-  }
+/* Task card styles */
+.task-card {
+  @apply bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-200;
+}
 
-  .monday-purple {
-    background-color: #a25ddc;
-  }
+.task-card:hover {
+  transform: translateY(-1px);
+}
+
+/* Status badge styles */
+.status-badge {
+  @apply px-2 py-1 rounded-full text-xs font-medium border;
+}
+
+/* Animation classes */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
@@ -96,37 +203,48 @@
 
 @keyframes slideIn {
   from {
-    opacity: 0;
-    transform: translateX(-20px);
+    transform: translateX(-100%);
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
 }
 
 @keyframes bounceIn {
   0% {
-    opacity: 0;
     transform: scale(0.3);
+    opacity: 0;
   }
   50% {
-    opacity: 1;
     transform: scale(1.05);
   }
   70% {
     transform: scale(0.9);
   }
   100% {
-    opacity: 1;
     transform: scale(1);
+    opacity: 1;
   }
 }
 
-/* Scrollbar styling */
+/* Utility classes for text truncation */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
-  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -143,38 +261,6 @@
   background: #a8a8a8;
 }
 
-/* Focus styles */
-.focus-ring {
-  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-}
-
-/* Loading spinner */
-.spinner {
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #0073ea;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Drag and drop styles */
-.dragging {
-  opacity: 0.5;
-  transform: rotate(5deg);
-  z-index: 1000;
-}
-
-.drop-zone {
-  border: 2px dashed #0073ea;
-  background-color: rgba(0, 115, 234, 0.1);
-}
-
 /* Responsive design helpers */
 @media (max-width: 768px) {
   .sidebar-item {
@@ -186,18 +272,94 @@
   }
 }
 
-/* Dark mode support (if needed later) */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-  }
+/* Focus styles for accessibility */
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid #0073ea;
+  outline-offset: 2px;
 }
 
-/* Print styles */
-@media print {
-  .sidebar-item,
-  .task-card {
-    @apply shadow-none border border-gray-300;
-  }
+/* Loading spinner */
+.loading-spinner {
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #0073ea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Drag and drop styles */
+.drag-over {
+  @apply border-blue-300 bg-blue-50;
+}
+
+.dragging {
+  @apply opacity-50 transform rotate-1 scale-105;
+}
+
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(4px);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #0073ea 0%, #6c5ce7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Button hover effects */
+.btn-primary {
+  @apply bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-blue-700 hover:shadow-lg transform hover:scale-105;
+}
+
+.btn-secondary {
+  @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-gray-200 hover:shadow-md;
+}
+
+/* Card hover effects */
+.card-hover {
+  @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
+}
+
+/* Status indicators */
+.status-todo {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.status-progress {
+  @apply bg-blue-100 text-blue-800;
+}
+
+.status-done {
+  @apply bg-green-100 text-green-800;
+}
+
+.status-stuck {
+  @apply bg-red-100 text-red-800;
+}
+
+/* Priority indicators */
+.priority-low {
+  @apply bg-green-100 text-green-800 border-green-200;
+}
+
+.priority-medium {
+  @apply bg-yellow-100 text-yellow-800 border-yellow-200;
+}
+
+.priority-high {
+  @apply bg-orange-100 text-orange-800 border-orange-200;
+}
+
+.priority-critical {
+  @apply bg-red-100 text-red-800 border-red-200;
 }
