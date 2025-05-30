@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import BoardView from '../components/BoardView';
@@ -8,12 +8,40 @@ import { Board, User, Task } from '../types';
 const Dashboard = () => {
   const navigate = useNavigate();
   const [activeView, setActiveView] = useState('boards');
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Check if user is logged in
+    const isLoggedIn = localStorage.getItem('isLoggedIn');
+    console.log('Dashboard: Checking login status:', isLoggedIn);
+    
+    if (!isLoggedIn) {
+      console.log('User not logged in, redirecting to login...');
+      navigate('/login');
+      return;
+    }
+    
+    setIsLoading(false);
+  }, [navigate]);
 
   const handleLogout = () => {
     console.log('User logging out...');
-    // In a real app, you'd clear authentication tokens here
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('userEmail');
     navigate('/');
   };
+
+  // Show loading while checking authentication
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading dashboard...</p>
+        </div>
+      </div>
+    );
+  }
 
   // Mock data with more realistic content
   const mockUsers: User[] = [
