@@ -1,6 +1,5 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Filter, Users, Calendar, Plus, X } from 'lucide-react';
-import { DndContext, DragEndEvent, DragOverlay, DragStartEvent } from '@dnd-kit/core';
 import { Board, Column, Task, TaskStatus, Priority } from '../types';
 import { useBoard } from '../contexts/BoardContext';
 import StatusColumn from './StatusColumn';
@@ -23,7 +22,7 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
     moveTask 
   } = useBoard();
   
-  const [activeTask, setActiveTask] = useState<Task | null>(null);
+  const [draggedTask, setDraggedTask] = useState<Task | null>(null);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState<Task | null>(null);
   const [newTaskStatus, setNewTaskStatus] = useState<TaskStatus>('todo');
@@ -84,29 +83,22 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
     setIsTaskModalOpen(true);
   };
 
-  const handleDragStart = (event: DragStartEvent) => {
-    const task = board.tasks.find(t => t.id === event.active.id);
-    setActiveTask(task || null);
-    console.log('Drag started for task:', task?.title);
+  const handleDragStart = (task: Task) => {
+    console.log('Drag started for task:', task.title);
+    setDraggedTask(task);
   };
 
-  const handleDragEnd = (event: DragEndEvent) => {
-    const { active, over } = event;
-    setActiveTask(null);
+  const handleDragEnd = () => {
+    console.log('Drag ended');
+    setDraggedTask(null);
+  };
 
-    if (!over) {
-      console.log('Drag ended without valid drop target');
-      return;
+  const handleDrop = (newStatus: TaskStatus) => {
+    if (draggedTask && draggedTask.status !== newStatus) {
+      console.log(`Moving task "${draggedTask.title}" from ${draggedTask.status} to ${newStatus}`);
+      moveTask(draggedTask.id, newStatus);
     }
-
-    const taskId = active.id as string;
-    const newStatus = over.id as TaskStatus;
-    
-    const task = board.tasks.find(t => t.id === taskId);
-    if (task && task.status !== newStatus) {
-      console.log(`Moving task "${task.title}" from ${task.status} to ${newStatus}`);
-      moveTask(taskId, newStatus);
-    }
+    setDraggedTask(null);
   };
 
   const clearFilters = () => {
@@ -251,28 +243,22 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
         )}
       </div>
 
-      {/* Board Content with Drag and Drop */}
+      {/* Board Content with Custom Drag and Drop */}
       <div className="p-6">
-        <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
-          <div className="flex gap-6 overflow-x-auto pb-4">
-            {columns.map((column) => (
-              <StatusColumn
-                key={column.id}
-                column={column}
-                onTaskClick={handleTaskClick}
-                onAddTask={handleAddTask}
-              />
-            ))}
-          </div>
-          
-          <DragOverlay>
-            {activeTask ? (
-              <div className="transform rotate-3 opacity-90">
-                <TaskCard task={activeTask} />
-              </div>
-            ) : null}
-          </DragOverlay>
-        </DndContext>
+        <div className="flex gap-6 overflow-x-auto pb-4">
+          {columns.map((column) => (
+            <StatusColumn
+              key={column.id}
+              column={column}
+              onTaskClick={handleTaskClick}
+              onAddTask={handleAddTask}
+              onDragStart={handleDragStart}
+              onDragEnd={handleDragEnd}
+              onDrop={handleDrop}
+              draggedTask={draggedTask}
+            />
+          ))}
+        </div>
       </div>
 
       {/* Task Modal */}
