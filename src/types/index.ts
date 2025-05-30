@@ -2,9 +2,11 @@ export interface User {
   id: string;
   name: string;
   email: string;
-  avatar?: string;
   color: string;
 }
+
+export type TaskStatus = 'todo' | 'progress' | 'done' | 'stuck';
+export type Priority = 'low' | 'medium' | 'high' | 'critical';
 
 export interface Task {
   id: string;
@@ -19,6 +21,13 @@ export interface Task {
   boardId: string;
 }
 
+export interface Column {
+  id: string;
+  title: string;
+  color: string;
+  tasks: Task[];
+}
+
 export interface Board {
   id: string;
   name: string;
@@ -28,15 +37,4 @@ export interface Board {
   members: User[];
   createdAt: string;
   updatedAt: string;
-}
-
-export type TaskStatus = 'todo' | 'progress' | 'done' | 'stuck';
-
-export type Priority = 'low' | 'medium' | 'high' | 'critical';
-
-export interface Column {
-  id: TaskStatus;
-  title: string;
-  color: string;
-  tasks: Task[];
 }
