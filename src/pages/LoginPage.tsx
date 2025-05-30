@@ -16,17 +16,24 @@ const LoginPage = () => {
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Login form submitted with:', { email, password });
+    
     setIsLoading(true);
     setError('');
     
     // Simulate login process with credential validation
     setTimeout(() => {
+      console.log('Checking credentials...');
+      console.log('Expected:', { email: DEMO_EMAIL, password: DEMO_PASSWORD });
+      console.log('Received:', { email, password });
+      
       if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
-        console.log('Login successful with demo credentials');
+        console.log('✅ Login successful with demo credentials');
+        console.log('🚀 Navigating to dashboard...');
         setIsLoading(false);
         navigate('/dashboard');
       } else {
-        console.log('Login failed - invalid credentials');
+        console.log('❌ Login failed - invalid credentials');
         setError('Invalid email or password. Please use the demo credentials provided below.');
         setIsLoading(false);
       }
@@ -34,6 +41,7 @@ const LoginPage = () => {
   };
 
   const fillDemoCredentials = () => {
+    console.log('Auto-filling demo credentials');
     setEmail(DEMO_EMAIL);
     setPassword(DEMO_PASSWORD);
     setError('');
@@ -56,7 +64,7 @@ const LoginPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <div className="flex items-center justify-center gap-2 mb-4">
-              <div className="w-10 h-10 monday-gradient rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">M</span>
               </div>
               <span className="text-2xl font-bold text-gray-900">monday</span>
@@ -85,7 +93,7 @@ const LoginPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-monday-blue focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter your email"
                   required
                 />
@@ -103,7 +111,7 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-monday-blue focus:border-transparent transition-all"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   placeholder="Enter your password"
                   required
                 />
@@ -119,10 +127,10 @@ const LoginPage = () => {
 
             <div className="flex items-center justify-between">
               <label className="flex items-center">
-                <input type="checkbox" className="rounded border-gray-300 text-monday-blue focus:ring-monday-blue" />
+                <input type="checkbox" className="rounded border-gray-300 text-blue-600 focus:ring-blue-500" />
                 <span className="ml-2 text-sm text-gray-600">Remember me</span>
               </label>
-              <a href="#" className="text-sm text-monday-blue hover:underline">
+              <a href="#" className="text-sm text-blue-600 hover:underline">
                 Forgot password?
               </a>
             </div>
@@ -130,7 +138,7 @@ const LoginPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-monday-blue text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isLoading ? (
                 <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
@@ -170,7 +178,7 @@ const LoginPage = () => {
           {/* Sign up link */}
           <p className="text-center text-sm text-gray-600 mt-6">
             Don't have an account?{' '}
-            <a href="#" className="text-monday-blue hover:underline font-medium">
+            <a href="#" className="text-blue-600 hover:underline font-medium">
               Sign up for free
             </a>
           </p>
