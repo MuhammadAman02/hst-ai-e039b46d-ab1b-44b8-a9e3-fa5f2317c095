@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import BoardView from '../components/BoardView';
 import TeamView from '../components/TeamView';
+import CalendarView from '../components/CalendarView';
+import SettingsView from '../components/SettingsView';
 import { BoardProvider } from '../contexts/BoardContext';
 import { Board, User, Task } from '../types';
 
@@ -226,6 +228,10 @@ const Dashboard = () => {
         );
       case 'team':
         return <TeamView users={mockUsers} tasks={mockTasks} />;
+      case 'calendar':
+        return <CalendarView tasks={mockTasks} users={mockUsers} />;
+      case 'settings':
+        return <SettingsView />;
       case 'home':
         return (
           <div className="flex-1 bg-white p-8">
