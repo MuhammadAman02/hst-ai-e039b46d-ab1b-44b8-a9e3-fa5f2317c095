@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Filter, Plus, Mail, Phone, Calendar, MoreVertical, Users, Award, Clock, TrendingUp } from 'lucide-react';
+import { Search, Filter, Plus, Mail, Phone, Calendar, MoreVertical, Users, Award, Clock, TrendingUp, X } from 'lucide-react';
 import { User, Task } from '../types';
 
 interface TeamMember extends User {
