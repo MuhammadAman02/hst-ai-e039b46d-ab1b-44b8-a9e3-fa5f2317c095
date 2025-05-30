@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from '../components/Sidebar';
 import BoardView from '../components/BoardView';
+import TeamView from '../components/TeamView';
 import { BoardProvider } from '../contexts/BoardContext';
 import { Board, User, Task } from '../types';
 
@@ -50,6 +51,11 @@ const Dashboard = () => {
     { id: '3', name: 'Mike Johnson', email: 'mike@company.com', color: '#ff9500' },
     { id: '4', name: 'Emily Davis', email: 'emily@company.com', color: '#a25ddc' },
     { id: '5', name: 'Alex Chen', email: 'alex@company.com', color: '#e2445c' },
+    { id: '6', name: 'Lisa Rodriguez', email: 'lisa@company.com', color: '#037f4c' },
+    { id: '7', name: 'David Kim', email: 'david@company.com', color: '#bb3354' },
+    { id: '8', name: 'Jessica Brown', email: 'jessica@company.com', color: '#9d99b9' },
+    { id: '9', name: 'Ryan Taylor', email: 'ryan@company.com', color: '#ff642e' },
+    { id: '10', name: 'Amanda White', email: 'amanda@company.com', color: '#7e3af2' },
   ];
 
   const mockTasks: Task[] = [
@@ -148,6 +154,54 @@ const Dashboard = () => {
       createdAt: '2024-01-19',
       updatedAt: '2024-01-19',
       boardId: 'board1'
+    },
+    {
+      id: '9',
+      title: 'Mobile app prototype',
+      description: 'Create interactive prototype for mobile application with key user flows',
+      status: 'progress',
+      priority: 'high',
+      assignee: mockUsers[5],
+      dueDate: '2024-02-15',
+      createdAt: '2024-01-21',
+      updatedAt: '2024-01-23',
+      boardId: 'board1'
+    },
+    {
+      id: '10',
+      title: 'Performance monitoring setup',
+      description: 'Implement application performance monitoring and alerting system',
+      status: 'done',
+      priority: 'medium',
+      assignee: mockUsers[6],
+      dueDate: '2024-01-18',
+      createdAt: '2024-01-08',
+      updatedAt: '2024-01-17',
+      boardId: 'board1'
+    },
+    {
+      id: '11',
+      title: 'Customer feedback analysis',
+      description: 'Analyze customer feedback from surveys and support tickets to identify improvement areas',
+      status: 'progress',
+      priority: 'medium',
+      assignee: mockUsers[7],
+      dueDate: '2024-02-08',
+      createdAt: '2024-01-22',
+      updatedAt: '2024-01-24',
+      boardId: 'board1'
+    },
+    {
+      id: '12',
+      title: 'Integration testing',
+      description: 'Comprehensive testing of all third-party integrations and API endpoints',
+      status: 'todo',
+      priority: 'high',
+      assignee: mockUsers[8],
+      dueDate: '2024-02-12',
+      createdAt: '2024-01-23',
+      updatedAt: '2024-01-23',
+      boardId: 'board1'
     }
   ];
 
@@ -170,6 +224,8 @@ const Dashboard = () => {
             <BoardView board={mockBoard} />
           </BoardProvider>
         );
+      case 'team':
+        return <TeamView users={mockUsers} tasks={mockTasks} />;
       case 'home':
         return (
           <div className="flex-1 bg-white p-8">
