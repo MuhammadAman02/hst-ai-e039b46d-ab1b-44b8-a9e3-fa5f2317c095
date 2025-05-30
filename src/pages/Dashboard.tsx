@@ -1,1 +1,185 @@
-aW1wb3J0IFJlYWN0LCB7IHVzZVN0YXRlIH0gZnJvbSAncmVhY3QnOwppbXBvcnQgU2lkZWJhciBmcm9tICcuLi9jb21wb25lbnRzL1NpZGViYXInOwppbXBvcnQgQm9hcmRWaWV3IGZyb20gJy4uL2NvbXBvbmVudHMvQm9hcmRWaWV3JzsKaW1wb3J0IHsgQm9hcmQsIFVzZXIsIFRhc2sgfSBmcm9tICcuLi90eXBlcyc7Cgpjb25zdCBJbmRleCA9ICgpID0+IHsKICBjb25zdCBbYWN0aXZlVmlldywgc2V0QWN0aXZlVmlld10gPSB1c2VTdGF0ZSgnYm9hcmRzJyk7CgogIC8vIE1vY2sgZGF0YQogIGNvbnN0IG1vY2tVc2VyczogVXNlcltdID0gWwogICAgeyBpZDogJzEnLCBuYW1lOiAnSm9obiBEb2UnLCBlbWFpbDogJ2pvaG5AY29tcGFueS5jb20nLCBjb2xvcjogJyMwMDczZWEnIH0sCiAgICB7IGlkOiAnMicsIG5hbWU6ICdTYXJhaCBXaWxzb24nLCBlbWFpbDogJ3NhcmFoQGNvbXBhbnkuY29tJywgY29sb3I6ICcjMDBjODc1JyB9LAogICAgeyBpZDogJzMnLCBuYW1lOiAnTWlrZSBKb2huc29uJywgZW1haWw6ICdtaWtlQGNvbXBhbnkuY29tJywgY29sb3I6ICcjZmY5NTAwJyB9LAogICAgeyBpZDogJzQnLCBuYW1lOiAnRW1pbHkgRGF2aXMnLCBlbWFpbDogJ2VtaWx5QGNvbXBhbnkuY29tJywgY29sb3I6ICcjYTI1ZGRjJyB9LAogIF07CgogIGNvbnN0IG1vY2tUYXNrczogVGFza1tdID0gWwogICAgewogICAgICBpZDogJzEnLAogICAgICB0aXRsZTogJ0Rlc2lnbiBuZXcgbGFuZGluZyBwYWdlJywKICAgICAgZGVzY3JpcHRpb246ICdDcmVhdGUgd2lyZWZyYW1lcyBhbmQgbW9ja3VwcyBmb3IgdGhlIG5ldyBwcm9kdWN0IGxhbmRpbmcgcGFnZScsCiAgICAgIHN0YXR1czogJ3Byb2dyZXNzJywKICAgICAgcHJpb3JpdHk6ICdoaWdoJywKICAgICAgYXNzaWduZWU6IG1vY2tVc2Vyc1swXSwKICAgICAgZHVlRGF0ZTogJzIwMjQtMDEtMjUnLAogICAgICBjcmVhdGVkQXQ6ICcyMDI0LTAxLTE1JywKICAgICAgdXBkYXRlZEF0OiAnMjAyNC0wMS0yMCcsCiAgICAgIGJvYXJkSWQ6ICdib2FyZDEnCiAgICB9LAogICAgewogICAgICBpZDogJzInLAogICAgICB0aXRsZTogJ0ltcGxlbWVudCB1c2VyIGF1dGhlbnRpY2F0aW9uJywKICAgICAgZGVzY3JpcHRpb246ICdTZXQgdXAgbG9naW4sIHJlZ2lzdHJhdGlvbiwgYW5kIHBhc3N3b3JkIHJlc2V0IGZ1bmN0aW9uYWxpdHknLAogICAgICBzdGF0dXM6ICd0b2RvJywKICAgICAgcHJpb3JpdHk6ICdjcml0aWNhbCcsCiAgICAgIGFzc2lnbmVlOiBtb2NrVXNlcnNbMV0sCiAgICAgIGR1ZURhdGU6ICcyMDI0LTAxLTMwJywKICAgICAgY3JlYXRlZEF0OiAnMjAyNC0wMS0xNScsCiAgICAgIHVwZGF0ZWRBdDogJzIwMjQtMDEtMTUnLAogICAgICBib2FyZElkOiAnYm9hcmQxJwogICAgfSwKICAgIHsKICAgICAgaWQ6ICczJywKICAgICAgdGl0bGU6ICdXcml0ZSBBUEkgZG9jdW1lbnRhdGlvbicsCiAgICAgIGRlc2NyaXB0aW9uOiAnRG9jdW1lbnQgYWxsIFJFU1QgQVBJIGVuZHBvaW50cyB3aXRoIGV4YW1wbGVzJywKICAgICAgc3RhdHVzOiAnZG9uZScsCiAgICAgIHByaW9yaXR5OiAnbWVkaXVtJywKICAgICAgYXNzaWduZWU6IG1vY2tVc2Vyc1syXSwKICAgICAgZHVlRGF0ZTogJzIwMjQtMDEtMjAnLAogICAgICBjcmVhdGVkQXQ6ICcyMDI0LTAxLTEwJywKICAgICAgdXBkYXRlZEF0OiAnMjAyNC0wMS0xOScsCiAgICAgIGJvYXJkSWQ6ICdib2FyZDEnCiAgICB9LAogICAgewogICAgICBpZDogJzQnLAogICAgICB0aXRsZTogJ0ZpeCBtb2JpbGUgcmVzcG9uc2l2ZSBpc3N1ZXMnLAogICAgICBkZXNjcmlwdGlvbjogJ0FkZHJlc3MgbGF5b3V0IHByb2JsZW1zIG9uIG1vYmlsZSBkZXZpY2VzJywKICAgICAgc3RhdHVzOiAnc3R1Y2snLAogICAgICBwcmlvcml0eTogJ2hpZ2gnLAogICAgICBhc3NpZ25lZTogbW9ja1VzZXJzWzNdLAogICAgICBkdWVEYXRlOiAnMjAyNC0wMS0yMicsCiAgICAgIGNyZWF0ZWRBdDogJzIwMjQtMDEtMTInLAogICAgICB1cGRhdGVkQXQ6ICcyMDI0LTAxLTIxJywKICAgICAgYm9hcmRJZDogJ2JvYXJkMScKICAgIH0sCiAgICB7CiAgICAgIGlkOiAnNScsCiAgICAgIHRpdGxlOiAnU2V0IHVwIENJL0NEIHBpcGVsaW5lJywKICAgICAgZGVzY3JpcHRpb246ICdDb25maWd1cmUgYXV0b21hdGVkIHRlc3RpbmcgYW5kIGRlcGxveW1lbnQnLAogICAgICBzdGF0dXM6ICd0b2RvJywKICAgICAgcHJpb3JpdHk6ICdtZWRpdW0nLAogICAgICBhc3NpZ25lZTogbW9ja1VzZXJzWzFdLAogICAgICBkdWVEYXRlOiAnMjAyNC0wMi0wNScsCiAgICAgIGNyZWF0ZWRBdDogJzIwMjQtMDEtMTgnLAogICAgICB1cGRhdGVkQXQ6ICcyMDI0LTAxLTE4JywKICAgICAgYm9hcmRJZDogJ2JvYXJkMScKICAgIH0sCiAgICB7CiAgICAgIGlkOiAnNicsCiAgICAgIHRpdGxlOiAnVXNlciB0ZXN0aW5nIHNlc3Npb24nLAogICAgICBkZXNjcmlwdGlvbjogJ0NvbmR1Y3QgdXNhYmlsaXR5IHRlc3Rpbmcgd2l0aCAxMCB1c2VycycsCiAgICAgIHN0YXR1czogJ3Byb2dyZXNzJywKICAgICAgcHJpb3JpdHk6ICdsb3cnLAogICAgICBhc3NpZ25lZTogbW9ja1VzZXJzWzBdLAogICAgICBkdWVEYXRlOiAnMjAyNC0wMi0xMCcsCiAgICAgIGNyZWF0ZWRBdDogJzIwMjQtMDEtMTYnLAogICAgICB1cGRhdGVkQXQ6ICcyMDI0LTAxLTIyJywKICAgICAgYm9hcmRJZDogJ2JvYXJkMScKICAgIH0KICBdOwoKICBjb25zdCBtb2NrQm9hcmQ6IEJvYXJkID0gewogICAgaWQ6ICdib2FyZDEnLAogICAgbmFtZTogJ1Byb2R1Y3QgRGV2ZWxvcG1lbnQnLAogICAgZGVzY3JpcHRpb246ICdNYWluIGJvYXJkIGZvciB0cmFja2luZyBwcm9kdWN0IGRldmVsb3BtZW50IHRhc2tzIGFuZCBtaWxlc3RvbmVzJywKICAgIGNvbG9yOiAnIzAwNzNlYScsCiAgICB0YXNrczogbW9ja1Rhc2tzLAogICAgbWVtYmVyczogbW9ja1VzZXJzLAogICAgY3JlYXRlZEF0OiAnMjAyNC0wMS0wMScsCiAgICB1cGRhdGVkQXQ6ICcyMDI0LTAxLTIyJwogIH07CgogIGNvbnN0IHJlbmRlckNvbnRlbnQgPSAoKSA9PiB7CiAgICBzd2l0Y2ggKGFjdGl2ZVZpZXcpIHsKICAgICAgY2FzZSAnYm9hcmRzJzoKICAgICAgICByZXR1cm4gPEJvYXJkVmlldyBib2FyZD17bW9ja0JvYXJkfSAvPjsKICAgICAgY2FzZSAnaG9tZSc6CiAgICAgICAgcmV0dXJuICgKICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJmbGV4LTEgYmctd2hpdGUgcC04Ij4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9Im1heC13LTR4bCI+CiAgICAgICAgICAgICAgPGgxIGNsYXNzTmFtZT0idGV4dC0zeGwgZm9udC1ib2xkIHRleHQtZ3JheS05MDAgbWItNCI+V2VsY29tZSBiYWNrLCBKb2huITwvaDE+CiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LWdyYXktNjAwIG1iLTgiPkhlcmUncyB3aGF0J3MgaGFwcGVuaW5nIHdpdGggeW91ciBwcm9qZWN0cyB0b2RheS48L3A+CiAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImdyaWQgZ3JpZC1jb2xzLTEgbWQ6Z3JpZC1jb2xzLTMgZ2FwLTYgbWItOCI+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYmctZ3JhZGllbnQtdG8tciBmcm9tLWJsdWUtNTAwIHRvLWJsdWUtNjAwIHJvdW5kZWQtbGcgcC02IHRleHQtd2hpdGUiPgogICAgICAgICAgICAgICAgICA8aDMgY2xhc3NOYW1lPSJ0ZXh0LWxnIGZvbnQtc2VtaWJvbGQgbWItMiI+VG90YWwgVGFza3M8L2gzPgogICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtM3hsIGZvbnQtYm9sZCI+e21vY2tUYXNrcy5sZW5ndGh9PC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYmctZ3JhZGllbnQtdG8tciBmcm9tLWdyZWVuLTUwMCB0by1ncmVlbi02MDAgcm91bmRlZC1sZyBwLTYgdGV4dC13aGl0ZSI+CiAgICAgICAgICAgICAgICAgIDxoMyBjbGFzc05hbWU9InRleHQtbGcgZm9udC1zZW1pYm9sZCBtYi0yIj5Db21wbGV0ZWQ8L2gzPgogICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtM3hsIGZvbnQtYm9sZCI+e21vY2tUYXNrcy5maWx0ZXIodCA9PiB0LnN0YXR1cyA9PT0gJ2RvbmUnKS5sZW5ndGh9PC9wPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iYmctZ3JhZGllbnQtdG8tciBmcm9tLW9yYW5nZS01MDAgdG8tb3JhbmdlLTYwMCByb3VuZGVkLWxnIHAtNiB0ZXh0LXdoaXRlIj4KICAgICAgICAgICAgICAgICAgPGgzIGNsYXNzTmFtZT0idGV4dC1sZyBmb250LXNlbWlib2xkIG1iLTIiPkluIFByb2dyZXNzPC9oMz4KICAgICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LTN4bCBmb250LWJvbGQiPnttb2NrVGFza3MuZmlsdGVyKHQgPT4gdC5zdGF0dXMgPT09ICdwcm9ncmVzcycpLmxlbmd0aH08L3A+CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICA8L2Rpdj4KCiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImJnLXdoaXRlIHJvdW5kZWQtbGcgYm9yZGVyIGJvcmRlci1ncmF5LTIwMCBwLTYiPgogICAgICAgICAgICAgICAgPGgyIGNsYXNzTmFtZT0idGV4dC14bCBmb250LXNlbWlib2xkIHRleHQtZ3JheS05MDAgbWItNCI+UmVjZW50IEFjdGl2aXR5PC9oMj4KICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPSJzcGFjZS15LTQiPgogICAgICAgICAgICAgICAgICB7bW9ja1Rhc2tzLnNsaWNlKDAsIDMpLm1hcCgodGFzaykgPT4gKAogICAgICAgICAgICAgICAgICAgIDxkaXYga2V5PXt0YXNrLmlkfSBjbGFzc05hbWU9ImZsZXggaXRlbXMtY2VudGVyIGdhcC00IHAtMyBiZy1ncmF5LTUwIHJvdW5kZWQtbGciPgogICAgICAgICAgICAgICAgICAgICAgPGRpdiAKICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPSJ3LTEwIGgtMTAgcm91bmRlZC1mdWxsIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIHRleHQtd2hpdGUgZm9udC1tZWRpdW0iCiAgICAgICAgICAgICAgICAgICAgICAgIHN0eWxlPXt7IGJhY2tncm91bmRDb2xvcjogdGFzay5hc3NpZ25lZT8uY29sb3IgfX0KICAgICAgICAgICAgICAgICAgICAgID4KICAgICAgICAgICAgICAgICAgICAgICAge3Rhc2suYXNzaWduZWU/Lm5hbWUuc3BsaXQoJyAnKS5tYXAobiA9PiBuWzBdKS5qb2luKCcnKX0KICAgICAgICAgICAgICAgICAgICAgIDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9ImZsZXgtMSI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxwIGNsYXNzTmFtZT0iZm9udC1tZWRpdW0gdGV4dC1ncmF5LTkwMCI+e3Rhc2sudGl0bGV9PC9wPgogICAgICAgICAgICAgICAgICAgICAgICA8cCBjbGFzc05hbWU9InRleHQtc20gdGV4dC1ncmF5LTYwMCI+VXBkYXRlZCBieSB7dGFzay5hc3NpZ25lZT8ubmFtZX08L3A+CiAgICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT0idGV4dC1zbSB0ZXh0LWdyYXktNTAwIj4KICAgICAgICAgICAgICAgICAgICAgICAge25ldyBEYXRlKHRhc2sudXBkYXRlZEF0KS50b0xvY2FsZURhdGVTdHJpbmcoKX0KICAgICAgICAgICAgICAgICAgICAgIDwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICAgICAgKSl9CiAgICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICApOwogICAgICBkZWZhdWx0OgogICAgICAgIHJldHVybiAoCiAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT0iZmxleC0xIGJnLXdoaXRlIGZsZXggaXRlbXMtY2VudGVyIGp1c3RpZnktY2VudGVyIj4KICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9InRleHQtY2VudGVyIj4KICAgICAgICAgICAgICA8aDIgY2xhc3NOYW1lPSJ0ZXh0LTJ4bCBmb250LWJvbGQgdGV4dC1ncmF5LTkwMCBtYi0yIj5Db21pbmcgU29vbjwvaDI+CiAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPSJ0ZXh0LWdyYXktNjAwIj5UaGlzIGZlYXR1cmUgaXMgdW5kZXIgZGV2ZWxvcG1lbnQuPC9wPgogICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDwvZGl2PgogICAgICAgICk7CiAgICB9CiAgfTsKCiAgcmV0dXJuICgKICAgIDxkaXYgY2xhc3NOYW1lPSJtaW4taC1zY3JlZW4gYmctZ3JheS01MCBmbGV4Ij4KICAgICAgPFNpZGViYXIgYWN0aXZlVmlldz17YWN0aXZlVmlld30gb25WaWV3Q2hhbmdlPXtzZXRBY3RpdmVWaWV3fSAvPgogICAgICB7cmVuZGVyQ29udGVudCgpfQogICAgPC9kaXY+CiAgKTsKfTsKCmV4cG9ydCBkZWZhdWx0IEluZGV4Ow==
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Sidebar from '../components/Sidebar';
+import BoardView from '../components/BoardView';
+import { Board, User, Task } from '../types';
+
+const Dashboard = () => {
+  const navigate = useNavigate();
+  const [activeView, setActiveView] = useState('boards');
+
+  const handleLogout = () => {
+    // In a real app, you'd clear authentication tokens here
+    navigate('/');
+  };
+
+  // Mock data
+  const mockUsers: User[] = [
+    { id: '1', name: 'John Doe', email: 'john@company.com', color: '#0073ea' },
+    { id: '2', name: 'Sarah Wilson', email: 'sarah@company.com', color: '#00c875' },
+    { id: '3', name: 'Mike Johnson', email: 'mike@company.com', color: '#ff9500' },
+    { id: '4', name: 'Emily Davis', email: 'emily@company.com', color: '#a25ddc' },
+  ];
+
+  const mockTasks: Task[] = [
+    {
+      id: '1',
+      title: 'Design new landing page',
+      description: 'Create wireframes and mockups for the new product landing page',
+      status: 'progress',
+      priority: 'high',
+      assignee: mockUsers[0],
+      dueDate: '2024-01-25',
+      createdAt: '2024-01-15',
+      updatedAt: '2024-01-20',
+      boardId: 'board1'
+    },
+    {
+      id: '2',
+      title: 'Implement user authentication',
+      description: 'Set up login, registration, and password reset functionality',
+      status: 'todo',
+      priority: 'critical',
+      assignee: mockUsers[1],
+      dueDate: '2024-01-30',
+      createdAt: '2024-01-15',
+      updatedAt: '2024-01-15',
+      boardId: 'board1'
+    },
+    {
+      id: '3',
+      title: 'Write API documentation',
+      description: 'Document all REST API endpoints with examples',
+      status: 'done',
+      priority: 'medium',
+      assignee: mockUsers[2],
+      dueDate: '2024-01-20',
+      createdAt: '2024-01-10',
+      updatedAt: '2024-01-19',
+      boardId: 'board1'
+    },
+    {
+      id: '4',
+      title: 'Fix mobile responsive issues',
+      description: 'Address layout problems on mobile devices',
+      status: 'stuck',
+      priority: 'high',
+      assignee: mockUsers[3],
+      dueDate: '2024-01-22',
+      createdAt: '2024-01-12',
+      updatedAt: '2024-01-21',
+      boardId: 'board1'
+    },
+    {
+      id: '5',
+      title: 'Set up CI/CD pipeline',
+      description: 'Configure automated testing and deployment',
+      status: 'todo',
+      priority: 'medium',
+      assignee: mockUsers[1],
+      dueDate: '2024-02-05',
+      createdAt: '2024-01-18',
+      updatedAt: '2024-01-18',
+      boardId: 'board1'
+    },
+    {
+      id: '6',
+      title: 'User testing session',
+      description: 'Conduct usability testing with 10 users',
+      status: 'progress',
+      priority: 'low',
+      assignee: mockUsers[0],
+      dueDate: '2024-02-10',
+      createdAt: '2024-01-16',
+      updatedAt: '2024-01-22',
+      boardId: 'board1'
+    }
+  ];
+
+  const mockBoard: Board = {
+    id: 'board1',
+    name: 'Product Development',
+    description: 'Main board for tracking product development tasks and milestones',
+    color: '#0073ea',
+    tasks: mockTasks,
+    members: mockUsers,
+    createdAt: '2024-01-01',
+    updatedAt: '2024-01-22'
+  };
+
+  const renderContent = () => {
+    switch (activeView) {
+      case 'boards':
+        return <BoardView board={mockBoard} />;
+      case 'home':
+        return (
+          <div className="flex-1 bg-white p-8">
+            <div className="max-w-4xl">
+              <h1 className="text-3xl font-bold text-gray-900 mb-4">Welcome back, John!</h1>
+              <p className="text-gray-600 mb-8">Here's what's happening with your projects today.</p>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
+                  <h3 className="text-lg font-semibold mb-2">Total Tasks</h3>
+                  <p className="text-3xl font-bold">{mockTasks.length}</p>
+                </div>
+                <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-lg p-6 text-white">
+                  <h3 className="text-lg font-semibold mb-2">Completed</h3>
+                  <p className="text-3xl font-bold">{mockTasks.filter(t => t.status === 'done').length}</p>
+                </div>
+                <div className="bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg p-6 text-white">
+                  <h3 className="text-lg font-semibold mb-2">In Progress</h3>
+                  <p className="text-3xl font-bold">{mockTasks.filter(t => t.status === 'progress').length}</p>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg border border-gray-200 p-6">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+                <div className="space-y-4">
+                  {mockTasks.slice(0, 3).map((task) => (
+                    <div key={task.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg">
+                      <div 
+                        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium"
+                        style={{ backgroundColor: task.assignee?.color }}
+                      >
+                        {task.assignee?.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="flex-1">
+                        <p className="font-medium text-gray-900">{task.title}</p>
+                        <p className="text-sm text-gray-600">Updated by {task.assignee?.name}</p>
+                      </div>
+                      <span className="text-sm text-gray-500">
+                        {new Date(task.updatedAt).toLocaleDateString()}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      default:
+        return (
+          <div className="flex-1 bg-white flex items-center justify-center">
+            <div className="text-center">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Coming Soon</h2>
+              <p className="text-gray-600">This feature is under development.</p>
+            </div>
+          </div>
+        );
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-50 flex">
+      <Sidebar 
+        activeView={activeView} 
+        onViewChange={setActiveView}
+        onLogout={handleLogout}
+      />
+      {renderContent()}
+    </div>
+  );
+};
+
+export default Dashboard;
