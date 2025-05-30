@@ -117,16 +117,16 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
   const hasActiveFilters = searchTerm || selectedPriority !== 'all' || selectedAssignee !== 'all';
 
   return (
-    <div className="flex-1 bg-white">
+    <div className="flex-1 bg-white dark:bg-gray-900 transition-colors duration-200">
       {/* Header */}
-      <div className="border-b border-gray-200 p-6">
+      <div className="border-b border-gray-200 dark:border-gray-700 p-6">
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">{board.name}</h1>
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">{board.name}</h1>
             {board.description && (
-              <p className="text-gray-600 mt-1">{board.description}</p>
+              <p className="text-gray-600 dark:text-gray-400 mt-1">{board.description}</p>
             )}
-            <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+            <div className="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
               <span>{board.tasks.length} total tasks</span>
               <span>{filteredTasks.length} showing</span>
               <span>Last updated: {new Date(board.updatedAt).toLocaleDateString()}</span>
@@ -137,7 +137,7 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
               {board.members.slice(0, 4).map((member) => (
                 <div
                   key={member.id}
-                  className="w-8 h-8 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium text-white cursor-pointer hover:scale-110 transition-transform"
+                  className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 flex items-center justify-center text-xs font-medium text-white cursor-pointer hover:scale-110 transition-transform"
                   style={{ backgroundColor: member.color }}
                   title={member.name}
                 >
@@ -145,12 +145,12 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
                 </div>
               ))}
               {board.members.length > 4 && (
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-gray-300 flex items-center justify-center text-xs font-medium text-gray-600">
+                <div className="w-8 h-8 rounded-full border-2 border-white dark:border-gray-900 bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-xs font-medium text-gray-600 dark:text-gray-300">
                   +{board.members.length - 4}
                 </div>
               )}
             </div>
-            <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-150">
+            <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-150 text-gray-700 dark:text-gray-300">
               <Users size={16} />
               <span className="text-sm">Invite</span>
             </button>
@@ -167,13 +167,13 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
         {/* Search and Filters */}
         <div className="flex items-center gap-4">
           <div className="relative flex-1 max-w-md">
-            <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+            <Search size={16} className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500" />
             <input
               type="text"
               placeholder="Search tasks..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
             />
           </div>
           
@@ -181,8 +181,8 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
             onClick={() => setShowFilters(!showFilters)}
             className={`flex items-center gap-2 px-3 py-2 border rounded-lg transition-colors duration-150 ${
               hasActiveFilters 
-                ? 'border-blue-500 bg-blue-50 text-blue-700' 
-                : 'border-gray-300 hover:bg-gray-50'
+                ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300' 
+                : 'border-gray-300 dark:border-gray-600 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-300'
             }`}
           >
             <Filter size={16} />
@@ -197,14 +197,14 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
           {hasActiveFilters && (
             <button
               onClick={clearFilters}
-              className="flex items-center gap-1 px-2 py-1 text-sm text-gray-600 hover:text-gray-900"
+              className="flex items-center gap-1 px-2 py-1 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200"
             >
               <X size={14} />
               Clear
             </button>
           )}
 
-          <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors duration-150">
+          <button className="flex items-center gap-2 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-150 text-gray-700 dark:text-gray-300">
             <Calendar size={16} />
             <span className="text-sm">Calendar</span>
           </button>
@@ -212,14 +212,14 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
 
         {/* Filter Panel */}
         {showFilters && (
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+          <div className="mt-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Priority</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Priority</label>
                 <select
                   value={selectedPriority}
                   onChange={(e) => setSelectedPriority(e.target.value as Priority | 'all')}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="all">All Priorities</option>
                   <option value="low">Low</option>
@@ -229,11 +229,11 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Assignee</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Assignee</label>
                 <select
                   value={selectedAssignee}
                   onChange={(e) => setSelectedAssignee(e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white dark:bg-gray-700 text-gray-900 dark:text-white"
                 >
                   <option value="all">All Assignees</option>
                   <option value="">Unassigned</option>
