@@ -2,5 +2,9 @@
   {
     "role": "user",
     "content": "The deployment failed with the following error from Fly.io:\n\n{'#10 4.445 error during build:\\n#10 4.445 [vite]: Rollup failed to resolve import \"@dnd-kit/core\" from \"/app/src/components/BoardView.tsx\".\\n#10 4.445 This is most likely unintended because it can break your application at runtime.'}\n\nPlease fix the issue."
+  },
+  {
+    "role": "user",
+    "content": "The deployment failed with the following error from Fly.io:\n\n{'#10 2.644 error during build:\\n#10 2.644 [vite]: Rollup failed to resolve import \"@dnd-kit/core\" from \"/app/src/components/BoardView.tsx\".\\n#10 2.644 This is most likely unintended because it can break your application at runtime.'}\n\nPlease fix the issue."
   }
 ]
