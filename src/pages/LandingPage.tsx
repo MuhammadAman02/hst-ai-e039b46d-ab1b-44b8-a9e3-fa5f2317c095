@@ -170,75 +170,173 @@ const LandingPage = () => {
               ))}
             </div>
 
-            {/* Product Preview */}
+            {/* Enhanced Product Preview - Realistic Dashboard */}
             <div className="relative">
               <div className="bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden max-w-6xl mx-auto">
+                {/* Browser Header */}
                 <div className="bg-gray-50 px-6 py-4 border-b border-gray-200">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 bg-red-400 rounded-full"></div>
                     <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
                     <div className="w-3 h-3 bg-green-400 rounded-full"></div>
-                    <span className="ml-4 text-sm text-gray-500">monday.com - Project Dashboard</span>
+                    <span className="ml-4 text-sm text-gray-500">monday.com - Product Development Board</span>
                   </div>
                 </div>
                 
-                {/* Realistic Dashboard Mockup */}
-                <div className="p-8 bg-gradient-to-br from-gray-50 to-white">
-                  {/* Header */}
+                {/* Realistic Dashboard Content */}
+                <div className="p-6 bg-white">
+                  {/* Dashboard Header */}
                   <div className="flex items-center justify-between mb-6">
                     <div className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg"></div>
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span className="text-white font-bold text-sm">PD</span>
+                      </div>
                       <div>
-                        <div className="w-32 h-4 bg-gray-800 rounded mb-1"></div>
-                        <div className="w-24 h-3 bg-gray-400 rounded"></div>
+                        <h2 className="text-xl font-bold text-gray-900">Product Development</h2>
+                        <p className="text-sm text-gray-600">12 tasks • Last updated 2 hours ago</p>
                       </div>
                     </div>
-                    <div className="flex gap-2">
-                      <div className="w-8 h-8 bg-blue-500 rounded-full"></div>
-                      <div className="w-8 h-8 bg-green-500 rounded-full"></div>
-                      <div className="w-8 h-8 bg-purple-500 rounded-full"></div>
+                    <div className="flex items-center gap-3">
+                      <div className="flex -space-x-2">
+                        <div className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium text-white">JD</div>
+                        <div className="w-8 h-8 bg-green-500 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium text-white">SW</div>
+                        <div className="w-8 h-8 bg-purple-500 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium text-white">MJ</div>
+                        <div className="w-8 h-8 bg-gray-300 rounded-full border-2 border-white flex items-center justify-center text-xs font-medium text-gray-600">+3</div>
+                      </div>
+                      <button className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded-lg hover:bg-blue-700 transition-colors">+ Add Task</button>
                     </div>
                   </div>
                   
-                  {/* Column Headers */}
-                  <div className="grid grid-cols-5 gap-4 mb-4">
-                    <div className="w-full h-8 bg-gray-200 rounded"></div>
-                    <div className="w-full h-8 bg-blue-100 rounded flex items-center justify-center">
-                      <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
-                    </div>
-                    <div className="w-full h-8 bg-orange-100 rounded flex items-center justify-center">
-                      <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                    </div>
-                    <div className="w-full h-8 bg-green-100 rounded flex items-center justify-center">
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                    </div>
-                    <div className="w-full h-8 bg-purple-100 rounded flex items-center justify-center">
-                      <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
-                    </div>
-                  </div>
-                  
-                  {/* Task Rows */}
-                  <div className="space-y-3">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <div key={i} className="grid grid-cols-5 gap-4 items-center">
-                        <div className="bg-white p-3 rounded-lg shadow-sm border">
-                          <div className="w-full h-4 bg-gray-700 rounded mb-2"></div>
-                          <div className="w-3/4 h-3 bg-gray-400 rounded"></div>
+                  {/* Kanban Board Layout */}
+                  <div className="grid grid-cols-4 gap-4">
+                    {/* To Do Column */}
+                    <div className="bg-gray-50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-3 h-3 bg-gray-400 rounded-full"></div>
+                        <h3 className="font-semibold text-gray-900">To Do</h3>
+                        <span className="bg-gray-200 text-gray-600 text-xs px-2 py-1 rounded-full">3</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">Design new landing page</h4>
+                          <p className="text-xs text-gray-600 mb-3">Create wireframes and mockups for the new product landing page</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-medium text-white">JD</div>
+                            <span className="text-xs text-red-600 bg-red-100 px-2 py-1 rounded-full">High</span>
+                          </div>
                         </div>
-                        <div className="flex justify-center">
-                          <div className={`w-6 h-6 rounded-full ${i <= 2 ? 'bg-blue-500' : 'bg-gray-200'}`}></div>
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">Set up CI/CD pipeline</h4>
+                          <p className="text-xs text-gray-600 mb-3">Configure automated testing and deployment</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-medium text-white">SW</div>
+                            <span className="text-xs text-yellow-600 bg-yellow-100 px-2 py-1 rounded-full">Medium</span>
+                          </div>
                         </div>
-                        <div className="flex justify-center">
-                          <div className={`w-6 h-6 rounded-full ${i === 3 ? 'bg-orange-500' : 'bg-gray-200'}`}></div>
-                        </div>
-                        <div className="flex justify-center">
-                          <div className={`w-6 h-6 rounded-full ${i >= 4 ? 'bg-green-500' : 'bg-gray-200'}`}></div>
-                        </div>
-                        <div className="flex justify-center">
-                          <div className="w-8 h-8 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full"></div>
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">Security audit</h4>
+                          <p className="text-xs text-gray-600 mb-3">Perform comprehensive security review</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs font-medium text-white">MJ</div>
+                            <span className="text-xs text-red-600 bg-red-100 px-2 py-1 rounded-full">Critical</span>
+                          </div>
                         </div>
                       </div>
-                    ))}
+                    </div>
+
+                    {/* In Progress Column */}
+                    <div className="bg-orange-50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
+                        <h3 className="font-semibold text-gray-900">In Progress</h3>
+                        <span className="bg-orange-200 text-orange-700 text-xs px-2 py-1 rounded-full">4</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-orange-200 hover:shadow-md transition-shadow">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">User authentication system</h4>
+                          <p className="text-xs text-gray-600 mb-3">Implement login, registration, and password reset</p>
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-medium text-white">JD</div>
+                            <span className="text-xs text-red-600 bg-red-100 px-2 py-1 rounded-full">Critical</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-1.5">
+                            <div className="bg-orange-500 h-1.5 rounded-full w-3/4"></div>
+                          </div>
+                        </div>
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-orange-200">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">Mobile app prototype</h4>
+                          <p className="text-xs text-gray-600 mb-3">Create interactive mobile prototype</p>
+                          <div className="flex items-center justify-between mb-2">
+                            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-medium text-white">SW</div>
+                            <span className="text-xs text-orange-600 bg-orange-100 px-2 py-1 rounded-full">High</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-1.5">
+                            <div className="bg-orange-500 h-1.5 rounded-full w-1/2"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Done Column */}
+                    <div className="bg-green-50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                        <h3 className="font-semibold text-gray-900">Done</h3>
+                        <span className="bg-green-200 text-green-700 text-xs px-2 py-1 rounded-full">3</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-green-200 opacity-75">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2 line-through">API documentation</h4>
+                          <p className="text-xs text-gray-600 mb-3">Document all REST API endpoints</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs font-medium text-white">MJ</div>
+                            <span className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">✓ Complete</span>
+                          </div>
+                        </div>
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-green-200 opacity-75">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2 line-through">Performance monitoring</h4>
+                          <p className="text-xs text-gray-600 mb-3">Set up application monitoring</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs font-medium text-white">JD</div>
+                            <span className="text-xs text-green-600 bg-green-100 px-2 py-1 rounded-full">✓ Complete</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Stuck Column */}
+                    <div className="bg-red-50 rounded-lg p-4">
+                      <div className="flex items-center gap-2 mb-4">
+                        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                        <h3 className="font-semibold text-gray-900">Stuck</h3>
+                        <span className="bg-red-200 text-red-700 text-xs px-2 py-1 rounded-full">2</span>
+                      </div>
+                      <div className="space-y-3">
+                        <div className="bg-white p-3 rounded-lg shadow-sm border border-red-200 hover:shadow-md transition-shadow">
+                          <h4 className="font-medium text-gray-900 text-sm mb-2">Mobile responsive issues</h4>
+                          <p className="text-xs text-gray-600 mb-3">Fix layout problems on mobile devices</p>
+                          <div className="flex items-center justify-between">
+                            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-xs font-medium text-white">SW</div>
+                            <span className="text-xs text-red-600 bg-red-100 px-2 py-1 rounded-full">Blocked</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Bottom Stats */}
+                  <div className="mt-6 pt-4 border-t border-gray-200">
+                    <div className="flex items-center justify-between text-sm text-gray-600">
+                      <div className="flex items-center gap-6">
+                        <span>12 total tasks</span>
+                        <span>3 completed this week</span>
+                        <span>75% completion rate</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span>Last updated:</span>
+                        <span className="font-medium">2 hours ago</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
