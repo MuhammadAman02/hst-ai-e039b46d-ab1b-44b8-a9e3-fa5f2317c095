@@ -37,10 +37,10 @@ const Dashboard = () => {
   // Show loading while checking authentication
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center transition-colors duration-200">
         <div className="text-center">
           <div className="w-8 h-8 border-2 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
         </div>
       </div>
     );
@@ -234,10 +234,10 @@ const Dashboard = () => {
         return <SettingsView />;
       case 'home':
         return (
-          <div className="flex-1 bg-white p-8">
+          <div className="flex-1 bg-white dark:bg-gray-900 p-8 transition-colors duration-200">
             <div className="max-w-4xl">
-              <h1 className="text-3xl font-bold text-gray-900 mb-4">Welcome back, John!</h1>
-              <p className="text-gray-600 mb-8">Here's what's happening with your projects today.</p>
+              <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Welcome back, John!</h1>
+              <p className="text-gray-600 dark:text-gray-400 mb-8">Here's what's happening with your projects today.</p>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg p-6 text-white">
@@ -257,11 +257,11 @@ const Dashboard = () => {
                 </div>
               </div>
 
-              <div className="bg-white rounded-lg border border-gray-200 p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">Recent Activity</h2>
+              <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6 transition-colors duration-200">
+                <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Recent Activity</h2>
                 <div className="space-y-4">
                   {mockTasks.slice(0, 5).map((task) => (
-                    <div key={task.id} className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                    <div key={task.id} className="flex items-center gap-4 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors">
                       <div 
                         className="w-10 h-10 rounded-full flex items-center justify-center text-white font-medium"
                         style={{ backgroundColor: task.assignee?.color }}
@@ -269,21 +269,21 @@ const Dashboard = () => {
                         {task.assignee?.name.split(' ').map(n => n[0]).join('')}
                       </div>
                       <div className="flex-1">
-                        <p className="font-medium text-gray-900">{task.title}</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="font-medium text-gray-900 dark:text-white">{task.title}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400">
                           {task.status === 'done' ? 'Completed' : 'Updated'} by {task.assignee?.name}
                         </p>
                       </div>
                       <div className="text-right">
                         <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                          task.status === 'done' ? 'bg-green-100 text-green-800' :
-                          task.status === 'progress' ? 'bg-blue-100 text-blue-800' :
-                          task.status === 'stuck' ? 'bg-red-100 text-red-800' :
-                          'bg-gray-100 text-gray-800'
+                          task.status === 'done' ? 'bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300' :
+                          task.status === 'progress' ? 'bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300' :
+                          task.status === 'stuck' ? 'bg-red-100 dark:bg-red-900/50 text-red-800 dark:text-red-300' :
+                          'bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-300'
                         }`}>
                           {task.status === 'progress' ? 'In Progress' : task.status}
                         </span>
-                        <p className="text-sm text-gray-500 mt-1">
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                           {new Date(task.updatedAt).toLocaleDateString()}
                         </p>
                       </div>
@@ -296,11 +296,11 @@ const Dashboard = () => {
         );
       default:
         return (
-          <div className="flex-1 bg-white flex items-center justify-center">
+          <div className="flex-1 bg-white dark:bg-gray-900 flex items-center justify-center transition-colors duration-200">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Coming Soon</h2>
-              <p className="text-gray-600">This feature is under development.</p>
-              <p className="text-sm text-gray-500 mt-2">
+              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Coming Soon</h2>
+              <p className="text-gray-600 dark:text-gray-400">This feature is under development.</p>
+              <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
                 Current view: <span className="font-medium">{activeView}</span>
               </p>
             </div>
@@ -310,7 +310,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex transition-colors duration-200">
       <Sidebar 
         activeView={activeView} 
         onViewChange={setActiveView}
