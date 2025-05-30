@@ -1,18 +1,18 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { Board, Task, User, TaskStatus, Priority } from '../types';
+import { Board, Task, TaskStatus, Priority, User } from '../types';
 
 interface BoardContextType {
   board: Board;
-  updateTask: (taskId: string, updates: Partial<Task>) => void;
-  addTask: (task: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => void;
-  deleteTask: (taskId: string) => void;
-  moveTask: (taskId: string, newStatus: TaskStatus) => void;
   searchTerm: string;
   setSearchTerm: (term: string) => void;
   selectedPriority: Priority | 'all';
   setSelectedPriority: (priority: Priority | 'all') => void;
-  selectedAssignee: string | 'all';
-  setSelectedAssignee: (assignee: string | 'all') => void;
+  selectedAssignee: string;
+  setSelectedAssignee: (assignee: string) => void;
+  addTask: (taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  updateTask: (taskId: string, updates: Partial<Task>) => void;
+  deleteTask: (taskId: string) => void;
+  moveTask: (taskId: string, newStatus: TaskStatus) => void;
 }
 
 const BoardContext = createContext<BoardContextType | undefined>(undefined);
@@ -34,33 +34,33 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
   const [board, setBoard] = useState<Board>(initialBoard);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedPriority, setSelectedPriority] = useState<Priority | 'all'>('all');
-  const [selectedAssignee, setSelectedAssignee] = useState<string | 'all'>('all');
+  const [selectedAssignee, setSelectedAssignee] = useState<string>('all');
+
+  const addTask = (taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => {
+    const newTask: Task = {
+      ...taskData,
+      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    };
+
+    console.log('Adding new task:', newTask);
+    setBoard(prev => ({
+      ...prev,
+      tasks: [...prev.tasks, newTask],
+      updatedAt: new Date().toISOString()
+    }));
+  };
 
   const updateTask = (taskId: string, updates: Partial<Task>) => {
     console.log('Updating task:', taskId, updates);
     setBoard(prev => ({
       ...prev,
-      tasks: prev.tasks.map(task =>
-        task.id === taskId
+      tasks: prev.tasks.map(task => 
+        task.id === taskId 
           ? { ...task, ...updates, updatedAt: new Date().toISOString() }
           : task
       ),
-      updatedAt: new Date().toISOString()
-    }));
-  };
-
-  const addTask = (taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => {
-    const newTask: Task = {
-      ...taskData,
-      id: `task_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    };
-    
-    console.log('Adding new task:', newTask);
-    setBoard(prev => ({
-      ...prev,
-      tasks: [...prev.tasks, newTask],
       updatedAt: new Date().toISOString()
     }));
   };
@@ -79,20 +79,22 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
     updateTask(taskId, { status: newStatus });
   };
 
+  const value: BoardContextType = {
+    board,
+    searchTerm,
+    setSearchTerm,
+    selectedPriority,
+    setSelectedPriority,
+    selectedAssignee,
+    setSelectedAssignee,
+    addTask,
+    updateTask,
+    deleteTask,
+    moveTask,
+  };
+
   return (
-    <BoardContext.Provider value={{
-      board,
-      updateTask,
-      addTask,
-      deleteTask,
-      moveTask,
-      searchTerm,
-      setSearchTerm,
-      selectedPriority,
-      setSelectedPriority,
-      selectedAssignee,
-      setSelectedAssignee
-    }}>
+    <BoardContext.Provider value={value}>
       {children}
     </BoardContext.Provider>
   );
