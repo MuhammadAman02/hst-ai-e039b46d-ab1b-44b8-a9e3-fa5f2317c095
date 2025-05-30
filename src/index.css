@@ -35,19 +35,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -96,98 +89,37 @@
   }
 
   body {
-    @apply bg-background text-foreground;
-  }
-
-  /* Fix for autofill styling */
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    -webkit-text-fill-color: #374151 !important;
-    color: #374151 !important;
-    background-color: white !important;
-  }
-
-  /* Additional autofill fixes for different browsers */
-  input[type="email"]:-webkit-autofill,
-  input[type="password"]:-webkit-autofill,
-  input[type="text"]:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset !important;
-    -webkit-text-fill-color: #374151 !important;
-    color: #374151 !important;
-    background-color: white !important;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  /* Ensure proper text color for all input states */
-  input[type="email"],
-  input[type="password"],
-  input[type="text"] {
-    color: #374151 !important;
+    @apply bg-background text-foreground transition-colors duration-200;
   }
 }
 
-/* Custom Monday.com styles */
+/* Custom styles for Monday.com clone */
 .monday-gradient {
-  background: linear-gradient(135deg, #0073ea 0%, #6c5ce7 100%);
+  background: linear-gradient(135deg, #0073ea 0%, #00c875 100%);
 }
 
-.monday-blue {
-  background-color: #0073ea;
-}
-
-.monday-green {
-  background-color: #00c875;
-}
-
-.monday-orange {
-  background-color: #fdab3d;
-}
-
-.monday-red {
-  background-color: #e2445c;
-}
-
-.monday-purple {
-  background-color: #a25ddc;
-}
-
-/* Sidebar styles */
 .sidebar-item {
-  @apply flex items-center gap-3 px-4 py-3 text-gray-700 rounded-lg transition-all duration-150 hover:bg-gray-100;
+  @apply flex items-center gap-3 px-4 py-3 text-gray-700 dark:text-gray-300 rounded-lg transition-all duration-150 hover:bg-gray-100 dark:hover:bg-gray-700;
 }
 
 .sidebar-item.active {
-  @apply bg-blue-50 text-blue-700 border-l-4 border-blue-600;
+  @apply bg-blue-50 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 font-medium;
 }
 
-/* Task card styles */
 .task-card {
-  @apply bg-white p-4 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-all duration-200 hover:border-blue-200;
+  @apply bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 shadow-sm hover:shadow-md transition-all duration-200;
 }
 
-.task-card:hover {
-  transform: translateY(-1px);
-}
-
-/* Status badge styles */
 .status-badge {
   @apply px-2 py-1 rounded-full text-xs font-medium border;
 }
 
-/* Animation classes */
 .animate-fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 
 .animate-slide-in {
   animation: slideIn 0.3s ease-out;
-}
-
-.animate-bounce-in {
-  animation: bounceIn 0.5s ease-out;
 }
 
 @keyframes fadeIn {
@@ -210,24 +142,40 @@
   }
 }
 
-@keyframes bounceIn {
-  0% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
+/* Monday.com color palette */
+.monday-blue {
+  color: #0073ea;
 }
 
-/* Utility classes for text truncation */
+.monday-green {
+  color: #00c875;
+}
+
+.monday-orange {
+  color: #fdab3d;
+}
+
+.monday-red {
+  color: #e2445c;
+}
+
+.bg-monday-blue {
+  background-color: #0073ea;
+}
+
+.bg-monday-green {
+  background-color: #00c875;
+}
+
+.bg-monday-orange {
+  background-color: #fdab3d;
+}
+
+.bg-monday-red {
+  background-color: #e2445c;
+}
+
+/* Line clamp utility */
 .line-clamp-2 {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -235,131 +183,57 @@
   overflow: hidden;
 }
 
-.line-clamp-3 {
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+/* Autofill styles fix */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #374151 !important;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
+.dark input:-webkit-autofill,
+.dark input:-webkit-autofill:hover,
+.dark input:-webkit-autofill:focus,
+.dark input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #1f2937 inset !important;
+  -webkit-text-fill-color: #f9fafb !important;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 3px;
+/* Dark mode transitions */
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
 }
 
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 3px;
+/* Dark mode specific styles */
+.dark .task-card {
+  @apply bg-gray-800 border-gray-700;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+.dark .sidebar-item {
+  @apply text-gray-300 hover:bg-gray-700;
 }
 
-/* Responsive design helpers */
-@media (max-width: 768px) {
-  .sidebar-item {
-    @apply px-3 py-2;
-  }
-  
-  .task-card {
-    @apply p-3;
-  }
+.dark .sidebar-item.active {
+  @apply bg-blue-900/50 text-blue-400;
 }
 
-/* Focus styles for accessibility */
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
-  outline: 2px solid #0073ea;
-  outline-offset: 2px;
+/* Scrollbar styling for dark mode */
+.dark ::-webkit-scrollbar {
+  width: 8px;
 }
 
-/* Loading spinner */
-.loading-spinner {
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #0073ea;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.dark ::-webkit-scrollbar-track {
+  background: #374151;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 4px;
 }
 
-/* Drag and drop styles */
-.drag-over {
-  @apply border-blue-300 bg-blue-50;
-}
-
-.dragging {
-  @apply opacity-50 transform rotate-1 scale-105;
-}
-
-/* Modal backdrop */
-.modal-backdrop {
-  backdrop-filter: blur(4px);
-}
-
-/* Gradient text */
-.gradient-text {
-  background: linear-gradient(135deg, #0073ea 0%, #6c5ce7 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Button hover effects */
-.btn-primary {
-  @apply bg-blue-600 text-white px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-blue-700 hover:shadow-lg transform hover:scale-105;
-}
-
-.btn-secondary {
-  @apply bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-gray-200 hover:shadow-md;
-}
-
-/* Card hover effects */
-.card-hover {
-  @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-1;
-}
-
-/* Status indicators */
-.status-todo {
-  @apply bg-gray-100 text-gray-800;
-}
-
-.status-progress {
-  @apply bg-blue-100 text-blue-800;
-}
-
-.status-done {
-  @apply bg-green-100 text-green-800;
-}
-
-.status-stuck {
-  @apply bg-red-100 text-red-800;
-}
-
-/* Priority indicators */
-.priority-low {
-  @apply bg-green-100 text-green-800 border-green-200;
-}
-
-.priority-medium {
-  @apply bg-yellow-100 text-yellow-800 border-yellow-200;
-}
-
-.priority-high {
-  @apply bg-orange-100 text-orange-800 border-orange-200;
-}
-
-.priority-critical {
-  @apply bg-red-100 text-red-800 border-red-200;
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
 }
