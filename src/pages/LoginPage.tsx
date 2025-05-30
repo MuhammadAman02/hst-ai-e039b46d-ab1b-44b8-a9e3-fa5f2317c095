@@ -39,14 +39,11 @@ const LoginPage = () => {
       if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
         console.log('✅ Login successful with demo credentials');
         
-        if (isInIframe) {
-          console.log('🔄 In iframe - using window.location for navigation');
-          // When in iframe, use window.location instead of React Router
-          window.location.href = '/dashboard';
-        } else {
-          console.log('🚀 Not in iframe - using React Router navigation');
-          navigate('/dashboard');
-        }
+        // Force a full page reload to the dashboard route
+        // This works reliably in both iframe and normal browser contexts
+        console.log('🔄 Forcing page navigation to dashboard...');
+        window.location.replace('/dashboard');
+        
         setIsLoading(false);
       } else {
         console.log('❌ Login failed - invalid credentials');
@@ -64,11 +61,8 @@ const LoginPage = () => {
   };
 
   const handleBackToHome = () => {
-    if (isInIframe) {
-      window.location.href = '/';
-    } else {
-      navigate('/');
-    }
+    console.log('Navigating back to home...');
+    window.location.replace('/');
   };
 
   return (
@@ -87,7 +81,7 @@ const LoginPage = () => {
         {isInIframe && (
           <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
             <p className="text-sm text-yellow-800">
-              ⚠️ Running in iframe mode - navigation will use page reload
+              ⚠️ Running in iframe mode - using window.location.replace for navigation
             </p>
           </div>
         )}
@@ -126,10 +120,10 @@ const LoginPage = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900"
+                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 bg-white"
                   style={{ 
-                    WebkitTextFillColor: '#374151',
-                    backgroundColor: 'white'
+                    WebkitTextFillColor: '#374151 !important',
+                    backgroundColor: 'white !important'
                   }}
                   placeholder="Enter your email"
                   required
@@ -148,10 +142,10 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900"
+                  className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-gray-900 bg-white"
                   style={{ 
-                    WebkitTextFillColor: '#374151',
-                    backgroundColor: 'white'
+                    WebkitTextFillColor: '#374151 !important',
+                    backgroundColor: 'white !important'
                   }}
                   placeholder="Enter your password"
                   required
@@ -182,7 +176,10 @@ const LoginPage = () => {
               className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
               {isLoading ? (
-                <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <>
+                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                  Signing in...
+                </>
               ) : (
                 'Sign In'
               )}
