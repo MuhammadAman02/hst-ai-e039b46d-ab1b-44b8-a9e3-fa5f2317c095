@@ -1,29 +1,22 @@
 import React from 'react';
 import { Calendar, User, AlertCircle, GripVertical } from 'lucide-react';
-import { useSortable } from '@dnd-kit/sortable';
-import { CSS } from '@dnd-kit/utilities';
 import { Task, Priority } from '../types';
 
 interface TaskCardProps {
   task: Task;
   onTaskClick?: (task: Task) => void;
+  onDragStart?: (task: Task) => void;
+  onDragEnd?: () => void;
+  isDragging?: boolean;
 }
 
-const TaskCard: React.FC<TaskCardProps> = ({ task, onTaskClick }) => {
-  const {
-    attributes,
-    listeners,
-    setNodeRef,
-    transform,
-    transition,
-    isDragging,
-  } = useSortable({ id: task.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
+const TaskCard: React.FC<TaskCardProps> = ({ 
+  task, 
+  onTaskClick, 
+  onDragStart, 
+  onDragEnd,
+  isDragging = false 
+}) => {
   const getPriorityColor = (priority: Priority) => {
     switch (priority) {
       case 'critical': return 'bg-red-100 text-red-800 border-red-200';
@@ -44,29 +37,37 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onTaskClick }) => {
   };
 
   const handleCardClick = (e: React.MouseEvent) => {
-    // Don't trigger click when dragging
-    if (isDragging) return;
-    
     // Don't trigger click when clicking on drag handle
     if ((e.target as HTMLElement).closest('[data-drag-handle]')) return;
     
     onTaskClick?.(task);
   };
 
+  const handleDragStart = (e: React.DragEvent) => {
+    console.log('Starting drag for task:', task.title);
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', task.id);
+    onDragStart?.(task);
+  };
+
+  const handleDragEnd = (e: React.DragEvent) => {
+    console.log('Ending drag for task:', task.title);
+    onDragEnd?.();
+  };
+
   return (
     <div
-      ref={setNodeRef}
-      style={style}
       className={`task-card group cursor-pointer animate-fade-in ${
-        isDragging ? 'opacity-50 rotate-3 scale-105 shadow-xl z-50' : ''
+        isDragging ? 'opacity-50 rotate-1 scale-105 shadow-xl z-50' : ''
       }`}
       onClick={handleCardClick}
+      draggable
+      onDragStart={handleDragStart}
+      onDragEnd={handleDragEnd}
     >
       <div className="flex items-start gap-2">
         {/* Drag Handle */}
         <div
-          {...attributes}
-          {...listeners}
           data-drag-handle
           className="opacity-0 group-hover:opacity-100 transition-opacity duration-150 cursor-grab active:cursor-grabbing mt-1 p-1 hover:bg-gray-100 rounded"
         >
