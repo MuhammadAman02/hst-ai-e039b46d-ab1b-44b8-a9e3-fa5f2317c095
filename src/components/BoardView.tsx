@@ -19,7 +19,8 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
     setSelectedPriority,
     selectedAssignee,
     setSelectedAssignee,
-    moveTask 
+    moveTask,
+    reorderTasks
   } = useBoard();
   
   const [draggedTask, setDraggedTask] = useState<Task | null>(null);
@@ -99,6 +100,11 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
       moveTask(draggedTask.id, newStatus);
     }
     setDraggedTask(null);
+  };
+
+  const handleReorderTasks = (columnId: string, fromIndex: number, toIndex: number) => {
+    console.log(`Reordering tasks in ${columnId} from ${fromIndex} to ${toIndex}`);
+    reorderTasks(columnId as TaskStatus, fromIndex, toIndex);
   };
 
   const clearFilters = () => {
@@ -243,7 +249,7 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
         )}
       </div>
 
-      {/* Board Content with Custom Drag and Drop */}
+      {/* Board Content with Enhanced Drag and Drop */}
       <div className="p-6">
         <div className="flex gap-6 overflow-x-auto pb-4">
           {columns.map((column) => (
@@ -255,6 +261,7 @@ const BoardView: React.FC<BoardViewProps> = ({ board: initialBoard }) => {
               onDragStart={handleDragStart}
               onDragEnd={handleDragEnd}
               onDrop={handleDrop}
+              onReorderTasks={handleReorderTasks}
               draggedTask={draggedTask}
             />
           ))}
