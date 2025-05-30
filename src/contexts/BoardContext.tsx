@@ -8,22 +8,14 @@ interface BoardContextType {
   selectedPriority: Priority | 'all';
   setSelectedPriority: (priority: Priority | 'all') => void;
   selectedAssignee: string;
-  setSelectedAssignee: (assignee: string) => void;
-  addTask: (taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => void;
+  setSelectedAssignee: (assigneeId: string) => void;
+  addTask: (taskData: Partial<Task>) => void;
   updateTask: (taskId: string, updates: Partial<Task>) => void;
   deleteTask: (taskId: string) => void;
   moveTask: (taskId: string, newStatus: TaskStatus) => void;
 }
 
 const BoardContext = createContext<BoardContextType | undefined>(undefined);
-
-export const useBoard = () => {
-  const context = useContext(BoardContext);
-  if (!context) {
-    throw new Error('useBoard must be used within a BoardProvider');
-  }
-  return context;
-};
 
 interface BoardProviderProps {
   children: ReactNode;
@@ -36,15 +28,21 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
   const [selectedPriority, setSelectedPriority] = useState<Priority | 'all'>('all');
   const [selectedAssignee, setSelectedAssignee] = useState<string>('all');
 
-  const addTask = (taskData: Omit<Task, 'id' | 'createdAt' | 'updatedAt'>) => {
+  const addTask = (taskData: Partial<Task>) => {
+    console.log('Adding new task:', taskData);
     const newTask: Task = {
-      ...taskData,
-      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      id: `task-${Date.now()}`,
+      title: taskData.title || '',
+      description: taskData.description || '',
+      status: taskData.status || 'todo',
+      priority: taskData.priority || 'medium',
+      assignee: taskData.assignee || null,
+      dueDate: taskData.dueDate || null,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
+      boardId: board.id
     };
 
-    console.log('Adding new task:', newTask);
     setBoard(prev => ({
       ...prev,
       tasks: [...prev.tasks, newTask],
@@ -75,7 +73,7 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
   };
 
   const moveTask = (taskId: string, newStatus: TaskStatus) => {
-    console.log('Moving task:', taskId, 'to status:', newStatus);
+    console.log('Moving task to new status:', taskId, newStatus);
     updateTask(taskId, { status: newStatus });
   };
 
@@ -90,7 +88,7 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
     addTask,
     updateTask,
     deleteTask,
-    moveTask,
+    moveTask
   };
 
   return (
@@ -98,4 +96,12 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
       {children}
     </BoardContext.Provider>
   );
+};
+
+export const useBoard = () => {
+  const context = useContext(BoardContext);
+  if (context === undefined) {
+    throw new Error('useBoard must be used within a BoardProvider');
+  }
+  return context;
 };
