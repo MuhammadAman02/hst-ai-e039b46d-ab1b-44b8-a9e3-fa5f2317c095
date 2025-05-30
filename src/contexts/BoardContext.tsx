@@ -8,11 +8,12 @@ interface BoardContextType {
   selectedPriority: Priority | 'all';
   setSelectedPriority: (priority: Priority | 'all') => void;
   selectedAssignee: string;
-  setSelectedAssignee: (assigneeId: string) => void;
+  setSelectedAssignee: (assignee: string) => void;
   addTask: (taskData: Partial<Task>) => void;
   updateTask: (taskId: string, updates: Partial<Task>) => void;
   deleteTask: (taskId: string) => void;
   moveTask: (taskId: string, newStatus: TaskStatus) => void;
+  reorderTasks: (status: TaskStatus, fromIndex: number, toIndex: number) => void;
 }
 
 const BoardContext = createContext<BoardContextType | undefined>(undefined);
@@ -31,8 +32,8 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
   const addTask = (taskData: Partial<Task>) => {
     console.log('Adding new task:', taskData);
     const newTask: Task = {
-      id: `task-${Date.now()}`,
-      title: taskData.title || '',
+      id: `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+      title: taskData.title || 'Untitled Task',
       description: taskData.description || '',
       status: taskData.status || 'todo',
       priority: taskData.priority || 'medium',
@@ -54,8 +55,8 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
     console.log('Updating task:', taskId, updates);
     setBoard(prev => ({
       ...prev,
-      tasks: prev.tasks.map(task => 
-        task.id === taskId 
+      tasks: prev.tasks.map(task =>
+        task.id === taskId
           ? { ...task, ...updates, updatedAt: new Date().toISOString() }
           : task
       ),
@@ -77,6 +78,30 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
     updateTask(taskId, { status: newStatus });
   };
 
+  const reorderTasks = (status: TaskStatus, fromIndex: number, toIndex: number) => {
+    console.log(`Reordering tasks in ${status} column from ${fromIndex} to ${toIndex}`);
+    
+    setBoard(prev => {
+      const tasksInColumn = prev.tasks.filter(task => task.status === status);
+      const otherTasks = prev.tasks.filter(task => task.status !== status);
+      
+      // Remove the task from its current position
+      const [movedTask] = tasksInColumn.splice(fromIndex, 1);
+      
+      // Insert it at the new position
+      tasksInColumn.splice(toIndex, 0, movedTask);
+      
+      // Combine all tasks back together
+      const reorderedTasks = [...otherTasks, ...tasksInColumn];
+      
+      return {
+        ...prev,
+        tasks: reorderedTasks,
+        updatedAt: new Date().toISOString()
+      };
+    });
+  };
+
   const value: BoardContextType = {
     board,
     searchTerm,
@@ -88,7 +113,8 @@ export const BoardProvider: React.FC<BoardProviderProps> = ({ children, initialB
     addTask,
     updateTask,
     deleteTask,
-    moveTask
+    moveTask,
+    reorderTasks
   };
 
   return (
