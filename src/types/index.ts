@@ -14,18 +14,11 @@ export interface Task {
   description?: string;
   status: TaskStatus;
   priority: Priority;
-  assignee?: User;
-  dueDate?: string;
+  assignee?: User | null;
+  dueDate?: string | null;
   createdAt: string;
   updatedAt: string;
   boardId: string;
-}
-
-export interface Column {
-  id: string;
-  title: string;
-  color: string;
-  tasks: Task[];
 }
 
 export interface Board {
@@ -37,4 +30,11 @@ export interface Board {
   members: User[];
   createdAt: string;
   updatedAt: string;
+}
+
+export interface Column {
+  id: string;
+  title: string;
+  color: string;
+  tasks: Task[];
 }
